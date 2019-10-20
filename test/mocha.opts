@@ -1,0 +1,9 @@
+./test/**/*test.js
+
+--reporter list
+
+--require test/mocha-config.js
+
+--timeout 7000
+
+--exit
