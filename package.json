@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha",
+    "test": "node_modules/mocha/bin/mocha ./test/**/*test.js",
+    "test:module-1": "node_modules/mocha/bin/mocha ./test/module-1/*test.js",
+    "test:module-2": "node_modules/mocha/bin/mocha ./test/module-2/*test.js",
+    "test:module-3": "node_modules/mocha/bin/mocha ./test/module-3/*test.js",
+    "test:module-4": "node_modules/mocha/bin/mocha ./test/module-4/*test.js",
     "start": "node api/index.js"
   },
   "author": "",

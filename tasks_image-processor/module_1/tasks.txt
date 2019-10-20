@@ -1,6 +1,3 @@
-Module Intro:
-In this module we will first add a file upload form to the html boiler plate I have provided. After that we will create a server. Our server will have two purposes, to serve our static files, and to do our image processing.
-
 TASK 1:
 In the index.html file inside the client directory, we are going to add a form tag. Let's put it inside the body.
 
@@ -23,11 +20,7 @@ Task 6:
 Next let's define a const of root. We are going to assign a call to path.join. Let's pass the current directory as the first argument, a string value of '..' as the second arg, and a string of 'client' as the third.
 Let's call the use method of our app. For the route argument, let's pass a string of '/*'. 
 For the route handler we will pass an anonymous function taking in the request and response.
-Our route handler should call the sendFile method of our request parameter with the root we defined as the first argument, and a string of 'index.html' as the second argument. You must complete task 8 before this task will pass it's unit test.
-
-Task 7:
-We need to instantiate the server and call the listen method of our app object. Let's pass 3000 as the port number.
-Lets pass an anonymous function as the callback. Inside this callback function lets call console.log passing in a template string with the text `App running on port: ${3000}`.
+Our route handler should call the sendFile method of our request parameter with the root we defined as the first argument, and a string of 'index.html' as the second argument.
 
 Module Outro:
 At this point we have a working server that will serve our upload page.
