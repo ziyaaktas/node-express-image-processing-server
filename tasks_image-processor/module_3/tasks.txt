@@ -1,3 +1,12 @@
+TASK 1:
+In router.js let's import path.
+Declare a constant called photoPath. Assign to it a call to the resolve method of path. The four arguments we are going to pass are __dirname, '../../', 'client', and 'photo-viewer.html'.
+
+TASK 2:
+Let's call the get method of our router object. Pass thr route '/photo-viewer' as the first argument.
+The second argument is an anonymous callback function that takes req and res as arguments.
+In the body of the function lets call the sendFile method of res, passing in the photoPath constant as it's
+only argument.
 
 TASK 3:
 Let's open up photo-viewer.html inside the client directory.

@@ -34,5 +34,8 @@ router.post('/upload', upload.single('photo'), async (req, res) => {
   return res.status(201).json({ success: true })
 })
 
+router.get('/photo-viewer', (req, res) => {
+  res.sendFile(photoPath)
+})
 
 module.exports = router

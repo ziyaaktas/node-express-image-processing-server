@@ -31,11 +31,20 @@ describe('module 3', () => {
     sinon.restore()
   })
 
+  it('router should resolve the correct path and save it to the photoPath', () => {
+    const router = rewire('../../api/src/router')
+    const photoPath = router.__get__('photoPath')
+    
+    expect(photoPath).to.equal(path.resolve(__dirname, '../../client/photo-viewer.html'))
+  })
+
   it('router should make a successful get request that returns a 200 and the photo-viewer.html page', async () => {
-    await request(app)
+    const response = await request(app)
       .get('/photo-viewer')
       .expect(200)
       .expect('Content-Type', /html/)
+
+    expect(response.text.includes("Photo Viewer")).to.be.true
   })
 
   it('photo-viewer.html should add an img tag with an src of ullr.png to photo-viewer.html', () => {
