@@ -1,1 +1,1 @@
-throw new Error('stubby mc stubface was here');
+throw new Error('Error from worker thread');

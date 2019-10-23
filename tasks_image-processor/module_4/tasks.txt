@@ -21,16 +21,16 @@ TASK 5:
 Define a function called uploadPathResolver. It should take filename as an argument.
 It should return a call to path.resolve passing in __dirname, '..', 'uploads', and filename.
 
-TASK 8:
+TASK 6:
 Pass an argument representing the filename to imageProcessor.
 Define a constant called sourcePath within the imageProcessor.
 Assign to it a call to uplodPathResolver passing in the filename parameter as the argument.
 
-TASK 6:
+TASK 7:
 Define a constant inside  of our imageProcessor function, before the promise, called resizedDestination.
 Assign to it a call to the uploadPathResolver passing in 'resized-' concatenated with the filename parameter.
 
-TASK 7:
+TASK 8:
 Define a constant called monochromeDestination inside imageProcessor.
 Assign to it a call to the uploadPathResolver passing in 'monochrome-' concatenated with the filename parameter.
 

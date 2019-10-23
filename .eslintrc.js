@@ -1,6 +1,13 @@
 module.exports = {
-    "extends": "google",
     "parserOptions": {
-        "ecmaVersion": 6
+      "ecmaVersion": 2017
+    },
+    "extends": "google",
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "allowArrowFunctions": true
     }
 };
