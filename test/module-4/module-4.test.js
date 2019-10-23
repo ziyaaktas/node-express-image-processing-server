@@ -78,7 +78,7 @@ describe('module 4', () => {
         //do nothing
       }
 
-      expect(pathStub.thirdCall.args[3]).to.equal('moarKittens.png')
+      expect(pathStub.thirdCall.args[2]).to.equal('moarKittens.png')
     })
 
     it('should assign a call to uploadPathResolver to a constant passing in resized- concatenated with the filename', async () => {
@@ -100,7 +100,7 @@ describe('module 4', () => {
         //do nothing
       }
 
-      expect(pathStub.getCall(3).args[3]).to.equal('resized-moarKittens.png')
+      expect(pathStub.getCall(3).args[2]).to.equal('resized-moarKittens.png')
     })
 
     it('should assign a call to uploadPathResolver to a constant passing in monochrome- concatenated to the filename', async () => {
@@ -122,10 +122,14 @@ describe('module 4', () => {
         //do nothing
       }
 
-      expect(pathStub.getCall(4).args[3]).to.equal('monochrome-moarKittens.png')
+      expect(pathStub.getCall(4).args[2]).to.equal('monochrome-moarKittens.png')
     })
 
-    it('should assign an instantiation of the Worker class to a constant representing the resizeWorker.', async () => {
+    it('should assign an instantiation of the Worker class to a constant representing the resizeWorker.', () => {
+      const imageProcessor = rewire('../../api/src/imageProcessor')
+      imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/resizeStub.js'))
+      imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/resizeStub.js'))
+
       const workerStub = sinon.stub()
       const imageProcessorProxy = proxyquire('../../api/src/imageProcessor', {
         worker_threads: {
@@ -136,9 +140,8 @@ describe('module 4', () => {
       })
 
       try {
-        await imageProcessorProxy('hereIsTheFile.png')
-      } catch (errr) {
-
+        imageProcessorProxy('hereIsTheFile.png')
+      } catch (err) {
       }
       
       expected = [
@@ -152,18 +155,17 @@ describe('module 4', () => {
       expect(workerStub.getCall(0).args).to.eql(expected)
     })
 
-    it('should assign an instantiation of the Worker class to a constant representing the monochromeWorker.', async () => {
+    it('should assign an instantiation of the Worker class to a constant representing the monochromeWorker.', () => {
       const workerStub = sinon.stub()
       const imageProcessorProxy = proxyquire('../../api/src/imageProcessor', {
         worker_threads: {
           Worker: workerStub,
           isMainThread: true,
-          '@noCallThru': true
         }
       })
 
       try {
-        await imageProcessorProxy('hereIsTheFile.png')
+        imageProcessorProxy('hereIsTheFile.png')
       } catch (errr) {
 
       }
@@ -192,10 +194,12 @@ describe('module 4', () => {
         //do nothing
       }
 
+
       expect(result).to.equal('resizeWorker finished processing') 
     })
 
     it('should reject the promise on resizeWorker\'s \'error\' event', async () => {
+      let error
       let result
 
       const imageProcessor = rewire('../../api/src/imageProcessor')
@@ -205,12 +209,14 @@ describe('module 4', () => {
       try {
        result = await imageProcessor('ullr.png')
       } catch(err) {
-        expect(err).to.eql({ resizeError: "stubby mc stubface was here"}) 
+        error = err
       }
-
+      
+     expect(error).to.eql({ resizeError: "stubby mc stubface was here"}) 
     })
     
     it('should resolve the promise on resizeWorker\'s \'exit\' event when process exit\'s > 0', async () => {
+      let error
       let result
 
       const imageProcessor = rewire('../../api/src/imageProcessor')
@@ -219,9 +225,12 @@ describe('module 4', () => {
 
       try {
        result = await imageProcessor('ullr.png')
+
       } catch(err) {
-        expect(err).to.eql({ ExitError: 1 })
+        error = err
       }
+      
+      return expect(error).to.eql({ ExitError: 1 })
 
     })
     
@@ -242,6 +251,7 @@ describe('module 4', () => {
     })
 
     it('should reject the promise on monochromeWorker\'s \'error\' event', async () => {
+      let error
       let result
 
       const imageProcessor = rewire('../../api/src/imageProcessor')
@@ -251,23 +261,26 @@ describe('module 4', () => {
       try {
        result = await imageProcessor('ullr.png')
       } catch(err) {
-        expect(err).to.eql({ monochromeError: "stubby mc stubface was here"}) 
+        error = err 
       }
-
+      
+      return expect(error).to.eql({ monochromeError: "stubby mc stubface was here"}) 
     })
     
     it('should resolve the promise on monochromeWorker\'s \'exit\' event when process exit\'s > 0', async () => {
+      let error
       let result
 
       const imageProcessor = rewire('../../api/src/imageProcessor')
       imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/resizeWorkerProxyExitCode1.js'))
       imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/monochromeStub.js'))
-
       try {
        result = await imageProcessor('ullr.png')
       } catch(err) {
-        expect(err).to.eql({ ExitError: 1 })
+        error = err
       }
+      
+      return expect(error).to.eql({ ExitError: 1 })
 
     })
   })

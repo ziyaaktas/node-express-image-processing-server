@@ -3,6 +3,6 @@
 
 --require test/mocha-config.js
 
---timeout 7000
+--timeout 3000
 
 --exit

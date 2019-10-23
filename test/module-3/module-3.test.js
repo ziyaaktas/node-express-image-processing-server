@@ -31,13 +31,6 @@ describe('module 3', () => {
     sinon.restore()
   })
 
-  it('router should resolve the correct path and save it to the photoPath', () => {
-    const router = rewire('../../api/src/router')
-    const photoPath = router.__get__('photoPath')
-    
-    expect(photoPath).to.equal(path.resolve(__dirname, '../../client/photo-viewer.html'))
-  })
-
   it('router should make a successful get request that returns a 200 and the photo-viewer.html page', async () => {
     await request(app)
       .get('/photo-viewer')
@@ -92,8 +85,13 @@ describe('module 3', () => {
 
     it('should throw errors passed to the callback passed into write', () => {
       expect(
-        () => writeStub.firstCall.args[1](new Error('Error in resize'))
-      ).to.throw(Error, 'Error in resize')
+        () => writeStub.firstCall.args[1](new Error('Error in monochrome'))
+      ).to.throw(Error, 'Error in monochrome')
+    })
+
+    it('should post a message on the parent port if no errors are thrown', () => {
+      writeStub.firstCall.args[1]()
+      expect(postMessageStub.firstCall.args[0]).to.eql({ resized: true })
     })
   })
 
