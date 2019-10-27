@@ -5,7 +5,7 @@ Export the router constant using module.exports.
 
 TASK 2:
 Let's write a function called filename. It should take req, file, and callback as it's arguments.
-Inside the function body make a call the callback passing in null as the first argument and file.originalname
+Inside the function body, call the callback passing in null as the first argument and file.originalname
 as the second argument.
 
 Task 3:
@@ -16,7 +16,8 @@ of 'api/uploads/'. It should also have a key of filename with our filename funct
 
 TASK 4:
 Declare a function called fileFilter. It should take req, file, and callback as arguments.
-Inside the function body declare an if statement that runs it's code block if file.mimetype does not strictly equal 'image/png'. Inside the if block let's assign to req.fileValidationError the string 'Wrong file type'. Then make
+Inside the function body, declare an if statement that runs it's code block if file.mimetype does not strictly equal 'image/png'.
+Inside the if block, assign to req.fileValidationError the string 'Wrong file type'. Then make
 a call to the callback parameter passing in null, false, and a new Error object with the message 'Wrong file type'.
 Next open up an else block, let's call the callback passing in null as the first argument, and true as the second.
 
@@ -27,24 +28,24 @@ Back on the parent object, define a key fileFilter assign to it our fileFilter f
 Define a key called storage and assign our storage constant to it.
 
 TASK 6:
-Back in the app.js file, let's also require bodyParser.
-Before our previous app.use, Let's call the use method of our app object. Pass in a call to bodyParser.urlencoded
+Back in the app.js file, let's require bodyParser.
+Before our previous app.use, call the use method of our app object. Pass in a call to bodyParser.urlencoded
  passing in an object with a key of extended and the boolean value true.
 
 Task 7:
-Let's go ahead and require our router. Let's call the use method of app again, this time after passing it bodyParser.
+Let's go ahead and require our router. After the use call with bodyParser, call use again.
 This time pass the route '/' as the first argument and our router object as the second.
 
 TASK 8:
-Back in router.js call the post method of our router object. Let's pass the route '/upload' as it's first argument.
+Back in router.js call the post method of our router object. Pass the route '/upload' as it's first argument.
 The second argument should be a call to the upload object's method single, passing in the string 'photo'.
-The third argument is an anonymous function that takes req, and res as arguments. Inside the function body,
-check if the req object has a fileValidationError property. If it does return a call to res.status passing in 400
-as the lone argument. Chain a call to json, passing in an object literal with a key of error and a value of req.fileValidationError.
+The third argument is an anonymous function that takes req and res as arguments. Inside the function body,
+check if the req object has a fileValidationError property. If it does, return a call to res.status passing in 400.
+Chain a call to json, passing in an object literal with a key of error and a value of req.fileValidationError.
 
 TASK 9:
 If there is no fileValidationError on the request, let's return a call to res.status passing in 201.
-Let's chain a call to json it, passing in an object literal with a key of success and the a boolean value of true.
+Chain a call to json, passing in an object literal with a key of success and the boolean value true.
 
 
 OUTRO:
