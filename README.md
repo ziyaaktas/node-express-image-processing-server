@@ -7,3 +7,16 @@ On Windows use the choclatey package manager.
 ```
 choco install graphicsmagick
 ```
+Install the dependencies
+```
+npm install
+```
+Run the unit tests
+```
+npm run test
+```
+Run an individual test
+```
+npm run test:module-3
+```
+
