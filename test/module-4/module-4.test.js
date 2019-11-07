@@ -26,7 +26,7 @@ describe('module 4', () => {
 
     it('should assign a call to path.resolve to the constant pathToResizeWorker', () => {
       const pathStub = sinon.stub();
-      const pathProxy = proxyquire('../../api/src/imageProcessor', {
+      proxyquire('../../api/src/imageProcessor', {
         path: {
           resolve: pathStub,
         },
@@ -38,7 +38,7 @@ describe('module 4', () => {
 
     it('should assign a call to path.resolve to the constant pathToMonochromeWorker', () => {
       const pathStub = sinon.stub();
-      const pathProxy = proxyquire('../../api/src/imageProcessor', {
+      proxyquire('../../api/src/imageProcessor', {
         path: {
           resolve: pathStub,
         },
@@ -196,9 +196,6 @@ describe('module 4', () => {
     });
 
     it('should reject the promise on resizeWorker\'s \'error\' event', async () => {
-      let error;
-      let result;
-
       const imageProcessor = rewire('../../api/src/imageProcessor');
       imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/resizeWorkerProxyError.js'));
       imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/monochromeStub.js'));
@@ -211,8 +208,6 @@ describe('module 4', () => {
     });
 
     it('should reject the promise on resizeWorker\'s \'exit\' event when process exit\'s > 0', async () => {
-      let result;
-
       const imageProcessor = rewire('../../api/src/imageProcessor');
       imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/resizeWorkerProxyExitCode1.js'));
       imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/monochromeStub.js'));
@@ -225,8 +220,6 @@ describe('module 4', () => {
     });
 
     it('should resolve the promise on monochromeWorker\'s \'message\' event', async () => {
-      let result;
-
       const imageProcessor = rewire('../../api/src/imageProcessor');
       imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/resizeWorkerProxy.js'));
       imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/monochromeFast.js'));
