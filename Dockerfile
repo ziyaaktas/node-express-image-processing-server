@@ -14,7 +14,3 @@ RUN npm install
 
 COPY . .
 
-RUN chown -R node:node $APP_DIR
-
-USER node
-
