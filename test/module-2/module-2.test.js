@@ -112,7 +112,7 @@ describe('module 2', () => {
       expect(JSON.parse(response.error.text).error).to.equal('Wrong file type');
     });
 
-    it('should make a successful post request that returns a 200', async () => {
+    it('should make a successful post request that returns a 201', async () => {
       await request(app)
           .post('/upload')
           .attach('photo', path.resolve(__dirname, '../../client/photos/ullr.png'))
