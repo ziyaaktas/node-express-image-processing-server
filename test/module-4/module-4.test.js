@@ -121,7 +121,7 @@ describe('module 4', () => {
       expect(pathStub.getCall(4).args[2]).to.equal('monochrome-moarKittens.png');
     });
 
-    it('should assign an instantiation of the Worker class to a constant representing the resizeWorker.', () => {
+    it('should assign an instantiation of the Worker class to a constant representing the resizeWorker.', async () => {
       const imageProcessor = rewire('../../api/src/imageProcessor');
       imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/resizeStub.js'));
       imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/resizeStub.js'));
@@ -136,8 +136,9 @@ describe('module 4', () => {
       });
 
       try {
-        imageProcessorProxy('hereIsTheFile.png');
+        await imageProcessorProxy('hereIsTheFile.png');
       } catch (err) {
+        // do nothing
       }
 
       expected = [
@@ -151,7 +152,7 @@ describe('module 4', () => {
       expect(workerStub.getCall(0).args).to.eql(expected);
     });
 
-    it('should assign an instantiation of the Worker class to a constant representing the monochromeWorker.', () => {
+    it('should assign an instantiation of the Worker class to a constant representing the monochromeWorker.', async () => {
       const workerStub = sinon.stub();
       const imageProcessorProxy = proxyquire('../../api/src/imageProcessor', {
         worker_threads: {
@@ -161,7 +162,7 @@ describe('module 4', () => {
       });
 
       try {
-        imageProcessorProxy('hereIsTheFile.png');
+        await imageProcessorProxy('hereIsTheFile.png');
       } catch (err) {
 
       }
@@ -191,7 +192,7 @@ describe('module 4', () => {
       }
 
 
-      expect(result).to.equal('resizeWorker finished processing');
+      return expect(result).to.equal('resizeWorker finished processing');
     });
 
     it('should reject the promise on resizeWorker\'s \'error\' event', async () => {
@@ -203,14 +204,13 @@ describe('module 4', () => {
       imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/monochromeStub.js'));
 
       try {
-        await expect(imageProcessor('ullr.png')).to.throw(new Error('Error from worker thread'));
+        await imageProcessor('ullr.png');
       } catch (err) {
-        // do nothing
+        expect('Error from worker thread').to.eql(err.message);
       }
     });
 
     it('should reject the promise on resizeWorker\'s \'exit\' event when process exit\'s > 0', async () => {
-      let error;
       let result;
 
       const imageProcessor = rewire('../../api/src/imageProcessor');
@@ -218,9 +218,9 @@ describe('module 4', () => {
       imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/monochromeStub.js'));
 
       try {
-        await expect(imageProcessor('ullr.png')).to.throw(new Error('Exited with status 1'));
+        await imageProcessor('ullr.png');
       } catch (err) {
-        // do nothing
+        expect('Exited with status code 1').to.eql(err.message);
       }
     });
 
@@ -237,20 +237,18 @@ describe('module 4', () => {
         // do nothing
       }
 
-      expect(result).to.equal('monochromeWorker finished processing');
+      return expect(result).to.equal('monochromeWorker finished processing');
     });
 
     it('should reject the promise on monochromeWorker\'s \'error\' event', async () => {
-      let error;
-      let result;
-
       const imageProcessor = rewire('../../api/src/imageProcessor');
       imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/resizeWorkerProxyError.js'));
       imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/monochromeStub.js'));
 
       try {
-        await expect(imageProcessor('ullr.png')).to.throw(new Error('Error from worker thread'));
+        await imageProcessor('ullr.png');
       } catch (err) {
+        expect('Error from worker thread').to.eql(err.message);
         // do nothing
       }
     });
@@ -261,8 +259,9 @@ describe('module 4', () => {
       imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/monochromeStub.js'));
 
       try {
-        await expect(imageProcessor('ullr.png')).to.throw(new Error('Exited with status 1'));
+        await imageProcessor('ullr.png');
       } catch (err) {
+        expect('Exited with status code 1').to.eql(err.message);
         // do nothing
       }
     });
