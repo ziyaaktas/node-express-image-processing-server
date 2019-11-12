@@ -3,7 +3,7 @@ const path = require('path');
 const multer = require('multer');
 const imageProcessor = require('./imageProcessor');
 
-const router = Router();
+const router = new Router();
 
 const filename = (req, file, callback) => callback(null, file.originalname);
 
