@@ -3,8 +3,7 @@
 ## Export the router
 TASK 1:
 Let's open up `api/src/router.js` and require `Router` from `"express"`.
-Declare a constant named `router` and assign to it a call to the `Router()` module.
-Export the `router` constant using `module.exports`.
+Declare a constant named `router` and assign to a new instantiation of the `Router()` class. Export the `router` constant using `module.exports`.
 
 ## Write the filename handler function
 TASK 2:
