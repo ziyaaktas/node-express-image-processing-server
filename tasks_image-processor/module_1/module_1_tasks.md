@@ -6,30 +6,31 @@ In the `index.html` file inside the `client` directory, we are going to add a `f
 
 ## Set the form's encoding and action
 TASK 2:
-Let's add some attributes to our `form` tag. Add a `method` of `post` to the `form`. Add an `enctype` attribute with the string `"multipart/form-data"` to the `form` tag. Add an `action` attribue with the string `"/upload"`. 
+Let's add some attributes to our `form` tag. Add a `method` of `"post"` to the 
+`form`. Add an `enctype` attribute with the string `"multipart/form-data"` to the `form` tag. Add an `action` attribue with the string `"/upload"`. 
 
 ## Add an input
 TASK 3:
-Inside our `form` add an `input` with a `class` name of `"file-input"`. Give it a `type` attribute with the string value `"file"`.
+Inside our `form`, add an `input` with a `class` name of `"file-input"`. Give it a `type` attribute with the string value `"file"`.
 Then give it a `name` attribute with the string value of `"photo"`.
 
 ## Add a submit button
 TASK 4:
-Next we will add a submit button. Under our file `input` let's create another `input` tag.
+Next we will add a submit button. Under our file `input`, let's create another `input` tag.
 It should have a `class` of `"submit-button"`, a `type` attribute of `"submit"`, and a `value` attribute of `"Submit"`.
 
 ## Export the app
 TASK 5:
-For our next task we will need to create our server. Let's open up `App.js` inside the `api` directory.
-Let's start out by requiring `"express"` and `"path"`. Next create a `const` called `app` and let's assign a call to the `express()` function. Next let's `export` our `app` on the `module.exports` object.
+For our next task we will need to create our server. Let's open up `App.js`, inside the `api` directory.
+Let's start out by requiring `"express"` and `"path"`. Next, create a `const` called `app`, and let's assign a call to the `express()` function. Next, let's `export` our `app` on the `module.exports` object.
 
 ## Respond with the form
 Task 6:
-Next let's define a constant to represent the path to our `index.html` file. We are going to assign a call to `path.join()` to it. Let's pass the current directory as the first argument, a string value of `'../client/index.html'` as the second arg.
-Let's call the `use()` method of our `app`. For the route argument, let's pass a string of `'/*'`. 
-For the route handler we will pass an anonymous function taking in the `request` and `response` as arguments.
-Our route handler should call the `sendFile` method of our `response` parameter with the path to the index file `constantroot` we defined as the first argument, and a string of '`index.html'` as the second argument.
+Let's define a constant to represent the path to our `index.html` file. Call `path.join()`, and assign it to the constant we just created. Let's pass the 
+current directory as the first argument, a string value of `'../client/index.html'` as the second argument. Let's call the `use()` method of our `app`. For 
+the _route_ argument, let's pass a string of `'/*'`. For the route handler, we will 
+pass an anonymous function that takes two paramters, `request` and `response` in that order. Our route handler should call the `sendFile()` method of our `response` parameter. As its first argument, use the path to the index file `constantroot` we previously defined, and as its second argument use  '`index.html'`. 
 
 Module Outro:
 At this point we have a working server that will serve our upload page.
-Let's run `yarn` start to start up our server. Let's open up our browser and go to localhost port 3000.
+Let's run `npm run start` to start up our server. Let's open up our browser and go to localhost port 3000.
