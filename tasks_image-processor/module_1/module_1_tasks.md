@@ -1,27 +1,29 @@
-Below is the mark-up (markdown? whatever :) ) version of the text-file module 1, https://github.com/pluralsight-projects/node-express-image-processing-server/blob/master/tasks_image-processor/module_1/tasks.txt
+# Creating the image upload page
 
-only changed to code-font where appropriate, including adding () for methods **no** other changes were made. following https://developers.google.com/style/code-in-text
-
----
-
+## Add a form to the body
 TASK 1:
 In the `index.html` file inside the `client` directory, we are going to add a `form` tag. Let's put it inside the `body`.
 
+## Set the form's encoding and action
 TASK 2:
 Let's add some attributes to our `form` tag. Add a `method` of `post` to the `form`. Add an `enctype` attribute with the string `"multipart/form-data"` to the `form` tag. Add an `action` attribue with the string `"/upload"`. 
 
+## Add an input
 TASK 3:
 Inside our `form` add an `input` with a `class` name of `"file-input"`. Give it a `type` attribute with the string value `"file"`.
 Then give it a `name` attribute with the string value of `"photo"`.
 
+## Add a submit button
 TASK 4:
 Next we will add a submit button. Under our file `input` let's create another `input` tag.
 It should have a `class` of `"submit-button"`, a `type` attribute of `"submit"`, and a `value` attribute of `"Submit"`.
 
+## Export the app
 TASK 5:
 For our next task we will need to create our server. Let's open up `App.js` inside the `api` directory.
 Let's start out by requiring `"express"` and `"path"`. Next create a `const` called `app` and let's assign a call to the `express()` function. Next let's `export` our `app` on the `module.exports` object.
 
+## Respond with the form
 Task 6:
 Next let's define a constant to represent the path to our `index.html` file. We are going to assign a call to `path.join()` to it. Let's pass the current directory as the first argument, a string value of `'../client/index.html'` as the second arg.
 Let's call the `use()` method of our `app`. For the route argument, let's pass a string of `'/*'`. 
