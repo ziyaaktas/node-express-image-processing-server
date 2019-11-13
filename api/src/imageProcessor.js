@@ -41,7 +41,7 @@ const imageProcessor = (filename) => {
         });
 
         resizeWorker.on('error', (error) => {
-          reject(Error(error.message));
+          reject(new Error(error.message));
         });
 
         resizeWorker.on('exit', (code) => {
