@@ -3,7 +3,6 @@ const proxyquire = require('proxyquire');
 const multer = require('multer');
 const request = require('supertest');
 const rewire = require('rewire');
-const jsdom = require('jsdom');
 const app = require('../../api/app');
 
 describe('module 2', () => {
