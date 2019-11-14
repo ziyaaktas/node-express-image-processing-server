@@ -6,24 +6,24 @@ In the `index.html` file inside the `client` directory, we are going to add a `f
 
 ## Set the form's encoding and action
 TASK 2:
-Let's add some attributes to our `form` tag. Add a `method` of `"post"` to the 
-`form`. Add an `enctype` attribute with the string `"multipart/form-data"` to 
-the `form` tag. Add an `action` attribute with the string `"/upload"`. 
+Let's add some attributes to our `form` tag. Add a `method` of `'post'` to the 
+`form`. Add an `enctype` attribute with the string `'multipart/form-data'` to 
+the `form` tag. Add an `action` attribute with the string `'/upload'`. 
 
 ## Add an input
 TASK 3:
-Inside our `form`, add an `input` with a `class` name of `"file-input"`. Give it a `type` attribute with the string value `"file"`.
-Then, give it a `name` attribute with the string value of `"photo"`.
+Inside our `form`, add an `input` with a `class` name of `'file-input'`. Give it a `type` attribute with the string value `'file'`.
+Then, give it a `name` attribute with the string value of `'photo'`.
 
 ## Add a submit button
 TASK 4:
 Next we will add a submit button. Under our file `input`, let's create another `input` tag.
-It should have a `class` of `"submit-button"`, a `type` attribute of `"submit"`, and a `value` attribute of `"Submit"`.
+It should have a `class` of `'submit-button'`, a `type` attribute of `'submit'`, and a `value` attribute of `'Submit'`.
 
 ## Export the app
 TASK 5:
-For our next task, we will need to create our server. Let's open up `app.js`, which is inside the `api` directory. Let's start out by requiring `"express"` 
-and `"path"`. Next, create a `const` called `app`, and let's assign a call to 
+For our next task, we will need to create our server. Let's open up `app.js`, which is inside the `api` directory. Let's start out by requiring `'express'` 
+and `'path'`. Next, create a `const` called `app`, and let's assign a call to 
 the `express()` function. Next, let's `export` our `app` on the `module.exports` 
 object.
 

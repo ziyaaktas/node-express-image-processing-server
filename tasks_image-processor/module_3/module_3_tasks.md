@@ -9,7 +9,7 @@ Assign to it a call to the `resolve` method of `path`. Pass `__dirname` and
 ## Create the photo-viewer get route
 TASK 2:
 Let's call the `get()` method of our `router` object. Pass the route
- `"/photo-viewer"` as the first argument. Pass an anonymous callback function
+ `'/photo-viewer'` as the first argument. Pass an anonymous callback function
  that takes `req` and `res` as arguments. In the body of the function lets call 
  the `sendFile()` method of `res`, passing in the `photoPath` constant as it's
 only argument.
@@ -18,7 +18,7 @@ only argument.
 TASK 3:
 Let's open up `photo-viewer.html` inside the client directory. Inside the 
 `<body>` tag, let's add an `<img>` tag with an `src` attribute with the value 
-`"ullr.png"` and a `class` of `photo`.
+`'ullr.png'` and a `class` of `photo`.
 
 ## Create the resize worker
 TASK 4:
