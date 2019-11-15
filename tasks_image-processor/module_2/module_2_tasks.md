@@ -2,8 +2,8 @@
 
 ## Export the router
 TASK 1:
-Let's open up `api/src/router.js` and require `Router` from `'express'`.
-Declare a constant named `router` and assign to a new instantiation of the `Router()` class. Export the `router` constant using `module.exports`.
+Let's open up `api/src/router.js`.
+In that file, use destructuring to assign to a constant `Router` the _Router_ method from `require('express')`. Then, declare a constant named `router`, and assign to it the result of calling `Router()`. Export the `router` constant using `module.exports`.
 
 ## Write the filename handler function
 TASK 2:
@@ -23,7 +23,7 @@ Note: the 2nd property is referring to the `filename` function we made earlier.
 TASK 4:
 Declare a function called `fileFilter`. It should take `req`, `file`, and 
 `callback` as parameters. Inside the function body declare an `if` statement that 
-runs it's code block if `file.mimetype` does not strictly equal `'image/png'`. 
+runs its code block if `file.mimetype` does not strictly equal `'image/png'`. 
 Inside the `if` block, let's assign to `req.fileValidationError` the string `'Wrong 
 file type'`. Then make a call to the callback parameter passing in `null`, `false`, and a new `Error` object with the message `'Wrong file type'`.Next, in an `else` block, let's call `callback()`, passing in `null` as the first argument, and `true` as the second.
 
