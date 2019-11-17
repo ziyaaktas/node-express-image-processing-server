@@ -25,7 +25,7 @@ Declare a function called `fileFilter`. It should take `req`, `file`, and
 `callback` as parameters. Inside the function body declare an `if` statement that 
 runs its code block if `file.mimetype` does not strictly equal `'image/png'`. 
 Inside the `if` block, let's assign to `req.fileValidationError` the string `'Wrong 
-file type'`. Then make a call to the callback parameter passing in `null`, `false`, and a new `Error` object with the message `'Wrong file type'`.Next, in an `else` block, let's call `callback()`, passing in `null` as the first argument, and `true` as the second.
+file type'`. Then, make a call to the `callback()` parameter, passing in `null`, `false`, and a new `Error` object with the message `'Wrong file type'`. Next, in an `else` block, let's call `callback()`, passing in `null` as the first argument, and `true` as the second.
 
 ## Define the upload callback
 TASK 5:
