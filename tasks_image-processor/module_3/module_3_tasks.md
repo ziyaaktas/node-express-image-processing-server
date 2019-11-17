@@ -3,28 +3,27 @@
 ## Resolve the path to the photo viewer
 TASK 1:
 In `router.js`, let's import `path`. Declare a constant called `photoPath`. 
-Assign to it a call to the `resolve` method of `path`. Pass `__dirname` and 
+Assign to it a call to the `resolve()` method of `path`. Pass `__dirname` and 
 `../../client/photo-viewer.html.
 
 ## Create the photo-viewer get route
 TASK 2:
 Let's call the `get()` method of our `router` object. Pass the route
  `'/photo-viewer'` as the first argument. Pass an anonymous callback function
- that takes `req` and `res` as arguments. In the body of the function lets call 
- the `sendFile()` method of `res`, passing in the `photoPath` constant as it's
+ that takes `req` and `res` as parameters. In the body of the function let's call 
+ the `sendFile()` method of `res`, passing in the `photoPath` constant as its
 only argument.
 
 ## Add an image 
 TASK 3:
-Let's open up `photo-viewer.html` inside the client directory. Inside the 
-`<body>` tag, let's add an `<img>` tag with an `src` attribute with the value 
-`'ullr.png'` and a `class` of `photo`.
+Let's open up `photo-viewer.html` inside the `client` directory. Inside the `<body>` tag,
+ let's add an `<img>` tag with a `src` attribute with the value `'ullr.png'` and a `class` of `photo`.
 
 ## Create the resize worker
 TASK 4:
 Inside the `resizeWorker.js` file, within the `api/src` directory, require `gm`. 
 Require `workerData` and `parentPort` from the `worker_threads` module. Make a 
-call to `gm()` passing in `workerData.source`.
+call to `gm()`, passing in `workerData.source`.
 
 ## Resize the photo to be 100px by 100px 
 TASK 5:
@@ -37,10 +36,10 @@ Chain a call to `write()` off of the call to `resize()` we made before, pass in
 `workerData.destination` as the first argument. The second argument should be an 
 anonymous function.
 
-## Handle errors gracefully
+## Handle resize errors gracefully
 TASK 7: 
-Pass `error` as the argument to our anonymous function. Inside the function body,
- check if `error` is a truthy value. If it is `throw` the `error`.
+Give our anonymous function a parameter of `error`. Inside the function body,
+ check if `error` is a truthy value. If it is, `throw` the `error`.
 
 ## Send a message to the parent thread
 TASK 8:
@@ -63,9 +62,9 @@ Chain a call to `write()` off of the previous call to `monochrome()`. Pass in
 `workerData.destination` as the first argument. The second argument should be an 
 anonymous function.
 
-## Handle errors gracefully
+## Handle monochrome errors gracefully
 TASK 12: 
-Pass `error` as the argument to our anonymous function. Inside the function body,
+Give our anonymous function a parameter of `error`. Inside the function body,
  check if `error` is a truthy value. If it is `throw` the error.
 
 ## Send a message to the parent thread
