@@ -6,11 +6,15 @@ RUN mkdir -p $APP_DIR
 
 WORKDIR $ {APP_DIR}
 
-RUN apk add graphicsmagick=1.3.31-r0
+RUN apk add graphicsmagick=1.3.32-r0
 
 ADD ./package.json .
 
 RUN npm install
 
 COPY . .
+
+RUN chown -R node:node client api
+
+USER node
 
