@@ -1,12 +1,12 @@
-FROM node:12.13.0-alpine
+FROM node:12.13.1
 
 ENV APP_DIR /src/app
 
 RUN mkdir -p $APP_DIR
 
-WORKDIR $ {APP_DIR}
+WORKDIR ${APP_DIR}
 
-RUN apk add graphicsmagick=1.3.32-r0
+RUN apt-get update && apt-get install -y graphicsmagick=1.3.30+hg15796-1~deb9u2 
 
 ADD ./package.json .
 
