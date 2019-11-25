@@ -24,7 +24,7 @@ describe('module 1', () => {
 
     context('Form', () => {
 
-      it('has a form tag', () => {
+      it('has a form tag @has-form-tag', () => {
         expect(form).to.exist
       })
 
