@@ -1,5 +1,5 @@
-const AssertionError = require('assert').AssertionError;
 const path = require('path');
+const proxyquire = require('proxyquire');
 const request = require('supertest');
 const jsdom = require('jsdom');
 const app = require('../../api/app');
@@ -109,7 +109,55 @@ describe('module 1', () => {
     });
   });
 
-  context('app.js', () => {
+  context('app.js unit tests', () => {
+    let useSpy;
+    let pathResolveStub;
+    let pathJoinSpy;
+
+    beforeEach(() => {
+      useSpy = sinon.spy();
+      pathResolveStub = sinon.stub();
+
+      proxyquire('../../api/app', {
+        express: sinon.stub().returns({
+          use: useSpy,
+        }),
+        path: {
+          resolve: pathResolveStub,
+        },
+      });
+    });
+
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('should save the results of calling path.join to a constant @respond-with-the-form', () => {
+      const expectedDirname = path.resolve(__dirname, '../../api');
+
+      try {
+        expect(expectedDirname).to.equal(pathResolveStub.firstCall.args[0]);
+      } catch (err) {
+        throw new Error('Did you pass `__dirname` as the first argument to `path.resolve()`?');
+      }
+
+      try {
+        expect('../client/index.html').to.equal(pathResolveStub.firstCall.args[1]);
+      } catch (err) {
+        throw new Error('Did you pass `\'../client/index.html\'` as the second argument to `path.resolve()`?');
+      }
+    });
+
+    it('app.use should be called with /* as it\'s route', () => {
+      try {
+        expect(useSpy.firstCall.args[0]).to.equal('/*');
+      } catch (err) {
+        throw new Error('Did you pass `/*` as the first agument to `app.use()`?');
+      }
+    });
+  });
+
+  context('app.js integration tests', () => {
     it('instantiates an express app @export-the-app', () => {
       try {
         expect(typeof app).to.be.equal('function');
@@ -125,7 +173,7 @@ describe('module 1', () => {
             .expect(200)
             .expect('Content-Type', /html/);
       } catch (err) {
-        throw new Error('`App.js` did you pass the correct path to a call to `res.sendFile()`?');
+        throw new Error('`App.js` did you call `res.sendFile()` with the correct argument inside the callback?');
       }
     });
   });
