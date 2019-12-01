@@ -30,7 +30,7 @@ object.
 ## Respond with the form
 Task 6:
 Let's define a constant to represent the path to our `index.html` file. Call 
-`path.join()`, and assign it to the constant we just created. Let's pass the 
+`path.resolve()`, and assign it to the constant we just created. Let's pass the 
 `__dirname` as the first argument, a string value of `'../client/
 index.html'` as the second argument. Let's call the `use()` method of our `app`. 
 For the _route_ argument, let's pass a string of `'/*'`. For the route handler, 
