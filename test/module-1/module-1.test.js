@@ -35,7 +35,7 @@ describe('module 1', () => {
         try {
           expect(form.attributes['method'].value).to.equal('post');
         } catch (err) {
-          throw new Error('`index.js` the `form` does not have a `method` of `post`');
+          throw new Error('the `form` does not have a `method` of `post`');
         }
       });
 
@@ -43,7 +43,7 @@ describe('module 1', () => {
         try {
           expect(form.attributes['enctype'].value).to.equal('multipart/form-data');
         } catch (err) {
-          throw new Error('`index.js` the `form` does not have an `enctype` of `multipart/form-data`');
+          throw new Error('the `form` does not have an `enctype` of `multipart/form-data`');
         }
       });
 
@@ -51,7 +51,7 @@ describe('module 1', () => {
         try {
           expect(form.attributes['action'].value).to.equal('/upload');
         } catch (err) {
-          throw new Error('`index.js` the `form` does not have an `action` of `/upload`');
+          throw new Error('the `form` does not have an `action` of `/upload`');
         }
       });
     });
@@ -61,7 +61,7 @@ describe('module 1', () => {
         try {
           expect(fileInput.className).to.equal('file-input');
         } catch (err) {
-          throw new Error('`index.js` the `form` does not contain an `input` with a `class` name  of `file-input`');
+          throw new Error('the `form` does not contain an `input` with a `class` name  of `file-input`');
         }
       });
 
@@ -69,7 +69,7 @@ describe('module 1', () => {
         try {
           expect(fileInput.attributes['type'].value).to.equal('file');
         } catch (err) {
-          throw new Error('`index.js` the `input` does not have a `type` with a `value` of `file`');
+          throw new Error('the `input` does not have a `type` with a `value` of `file`');
         }
       });
 
@@ -77,7 +77,7 @@ describe('module 1', () => {
         try {
           expect(fileInput.attributes['name'].value).to.equal('photo');
         } catch (err) {
-          throw new Error('`index.js` the `input` does not have a `name` with a `value` of `photo`');
+          throw new Error('the `input` does not have a `name` with a `value` of `photo`');
         }
       });
     });
@@ -87,7 +87,7 @@ describe('module 1', () => {
         try {
           expect(submitButton.className).to.equal('submit-button');
         } catch (err) {
-          throw new Error('`index.js` the `form` does not contain an `input` tag with a `class` name of `submit-button`');
+          throw new Error('the `form` does not contain an `input` tag with a `class` name of `submit-button`');
         }
       });
 
@@ -95,7 +95,7 @@ describe('module 1', () => {
         try {
           expect(submitButton.attributes['type'].value).to.equal('submit');
         } catch (err) {
-          throw new Error('`index.js` the `submit-button` does not have a `type` with a value of `submit`');
+          throw new Error('the `submit-button` does not have a `type` with a value of `submit`');
         }
       });
 
@@ -103,7 +103,7 @@ describe('module 1', () => {
         try {
           expect(submitButton.attributes['value'].value).to.equal('Submit');
         } catch (err) {
-          throw new Error('`index.js` the `submit-button` does not have a `value` attribute with a value of `Submit`');
+          throw new Error('the `submit-button` does not have a `value` attribute with a value of `Submit`');
         }
       });
     });
@@ -112,7 +112,6 @@ describe('module 1', () => {
   context('app.js unit tests', () => {
     let useSpy;
     let pathResolveStub;
-    let pathJoinSpy;
 
     beforeEach(() => {
       useSpy = sinon.spy();
@@ -162,7 +161,7 @@ describe('module 1', () => {
       try {
         expect(typeof app).to.be.equal('function');
       } catch (err) {
-        throw new Error('`app.js` did you remember to export the app?');
+        throw new Error('did you remember to export the app?');
       }
     });
 
@@ -173,7 +172,7 @@ describe('module 1', () => {
             .expect(200)
             .expect('Content-Type', /html/);
       } catch (err) {
-        throw new Error('`App.js` did you call `res.sendFile()` with the correct argument inside the callback?');
+        throw new Error('did you call `res.sendFile()` with the correct argument inside the callback?');
       }
     });
   });
