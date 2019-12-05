@@ -29,16 +29,7 @@ object.
 
 ## Respond with the form
 Task 6:
-Let's define a constant to represent the path to our `index.html` file. Call 
-`path.resolve()`, and assign it to the constant we just created. Let's pass the 
-`__dirname` as the first argument, a string value of `'../client/
-index.html'` as the second argument. Let's call the `use()` method of our `app`. 
-For the _route_ argument, let's pass a string of `'/*'`. For the route handler, 
-we will pass an anonymous function that takes two parameters, `request` and 
-`response` in that order. Our route handler should call the `sendFile()` method 
-of our `response` parameter. As its first argument, use the path to the index 
-file `constantroot` we previously defined, and as its second argument use  
-'`index.html'`. 
+Right above our `module.exports` line, let's define a constant `pathToIndex` to represent the path to our `index.html` file. Call `path.join()`, and assign to it the constant we just created. Let's pass `__dirname` as the first argument, and a string value of `'../client/index.html'` as the second argument. As its first argument, use the path to the index file `pathToIndex` we previously defined, and as its second argument use `'index.html'`.
 
 Module Outro:
 At this point we have a working server that will serve our upload page.
