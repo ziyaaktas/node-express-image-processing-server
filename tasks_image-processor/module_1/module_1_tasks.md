@@ -33,7 +33,7 @@ Right above our `module.exports` line, let's define a constant `pathToIndex` to 
 For the _route_ argument, let's pass a string of `'/*'`. For the route handler, 
 we will pass an anonymous function that takes two parameters, `request` and 
 `response` in that order. Our route handler should call the `sendFile()` method 
-of our `response` parameter. As its first argument, use the path to the index file `pathToIndex` we previously defined, and as its second argument use `'index.html'`.
+of our `response` parameter. As its first argument, use the path to the index file `pathToIndex` we previously defined.
 
 Module Outro:
 At this point we have a working server that will serve our upload page.
