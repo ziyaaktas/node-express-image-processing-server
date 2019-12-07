@@ -151,7 +151,7 @@ describe('module 1', () => {
       try {
         expect(useSpy.firstCall.args[0]).to.equal('/*');
       } catch (err) {
-        throw new Error('Did you pass `/*` as the first agument to `app.use()`?');
+        throw new Error('Did you pass `/*` as the first argument to `app.use()`?');
       }
     });
   });
