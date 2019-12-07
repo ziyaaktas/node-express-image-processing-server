@@ -26,12 +26,12 @@ describe('module 2', () => {
       sinon.restore();
     });
 
-    it('should export the router object', () => {
+    it('should export the router object @export-the-router', () => {
       const router = rewire('../../api/src/router');
-      expect(router).to.exist;
+      expect(typeof router, 'Did you remember to export the `router`?').to.equal('function');
     });
 
-    it('filename should call the callback with the correct arguments', () => {
+    it('filename should call the callback with the correct arguments @write-the-filename-handler', () => {
       const router = rewire('../../api/src/router');
       const routerFilename = router.__get__('filename');
       const callbackSpy = sinon.spy();
@@ -39,8 +39,17 @@ describe('module 2', () => {
 
       const filenameArgs = callbackSpy.firstCall.args;
 
-      expect(filenameArgs[0]).to.be.null;
-      expect(filenameArgs[1]).to.equal('photo.png');
+      try {
+        expect(filenameArgs[0]).to.be.null;
+      } catch (err) {
+        throw new Error('Did you pass `null` as the first argument to the callback?');
+      }
+
+      try {
+        expect(filenameArgs[1]).to.equal('photo.png');
+      } catch (err) {
+        throw new Error('Did you remember to pass `\'photo.png\'` as the second argument to the callback?');
+      }
     });
 
     it('should configure a storage object with multer', () => {
