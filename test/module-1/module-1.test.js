@@ -172,7 +172,7 @@ describe('module 1', () => {
             .expect(200)
             .expect('Content-Type', /html/);
       } catch (err) {
-        throw new Error('did you call `res.sendFile()` with the correct argument inside the callback?');
+        throw new Error('did you call `response.sendFile()` with the correct argument inside the callback?');
       }
     });
   });
