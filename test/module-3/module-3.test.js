@@ -53,7 +53,7 @@ describe('module 3', () => {
     expect(response.text.includes('Photo Viewer'), 'Did you call `res.sendFile() in the callback that\'s passed to `router.get()`?').to.be.true;
   });
 
-  it('photo-viewer.html should add an img tag with an src of ullr.png to photo-viewer.html', () => {
+  it('photo-viewer.html should add an img tag with an src of ullr.png to photo-viewer.html @add-an-image', () => {
     expect(
         'ullr.png',
         'Did you add an `<img>` with an `src` attribute equal to `\'ullr.png\'`?'
