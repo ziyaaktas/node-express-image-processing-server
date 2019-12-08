@@ -30,7 +30,7 @@ file type'`. Then, make a call to the `callback()` parameter, passing in `null`,
 ## Define the upload callback
 TASK 5:
 Declare a constant named `upload`. Assign to `upload` a call to `multer()`, 
-passing in an object literal. This object literal will have three properties. The first has a key called `limits`, and it will refer to an inner object literal that has a key of `filesize` with a value of `10000`. Back on the outer object literal, give its second property the key `fileFilter` which refers to our `fileFilter` function. Its third propery has a key called `storage`, and whose value is our `storage` constant.
+passing in an object literal. This object literal will have two properties.  It's first property will be the key `fileFilter` which refers to our `fileFilter()` function. Its second property has a key called `storage`, and whose value is our `storage` constant.
 
 ## Configure bodyParser
 TASK 6:
@@ -48,11 +48,11 @@ TASK 8:
 Back in `router.js`, call the `post()` method of our `router` object. Let's pass 
 the route `'/upload'` as its first argument. The second argument should be a 
 call to the `upload` object's method `single()`, passing in the string 
-`'photo'`. The third argument is an anonymous function that takes `req` and 
-`res` as parameters. Inside the function body, check if the `req` object has a 
-`fileValidationError` property. If it does return a call to `res.status()`, passing 
+`'photo'`. The third argument is an anonymous function that takes `request` and 
+`response` as parameters. Inside the function body, check if the `request` object has a 
+`fileValidationError` property. If it does return a call to `response.status()`, passing 
 in `400` as the lone argument. Chain a call to `json()`, passing in an object 
-literal with a key of `error` and a `value` of `req.fileValidationError`.
+literal with a key of `error` and a `value` of `request.fileValidationError`.
 
 ## Respond with a 201
 TASK 9:
