@@ -81,7 +81,8 @@ value `false`. Within our `try` block, call the `on()` method of `resizeWorker`.
 Let's pass the string `'message'` as the first argument. The second argument 
 should be an anonymous function with a `message` parameter. Inside 
 the body of the function, set the `resizeWorkerFinished` variable to `true`.
-Call `resolve()` with the string `'resizeWorker finished processing'`.
+Call `resolve()` with the string `'resizeWorker finished processing'`. Delete the
+`resolve()` that is outside the `try/catch` block, after the `else` block. We made this call in task 2.
 
 ## Register the on error event listener for the resize worker
 TASK 12:
@@ -92,7 +93,7 @@ This time, let's register the `'error'` event. Pass an anonymous function that h
 
 ## Register the on exit event listener for the resize worker
 TASK 13:
-After the event listener we just wrote, let's register another event to the `resizeWorker`. Call the `on()` method again, and this time pass in the event name `'exit'` as the first argument. The anonymous callback function should have a `code` parameter. Next, check to see if `code` is strictly equal to `0`. If it is, call `reject()`, passing in `new Error()`. The `Error()` constructor should take the string `'Exited with status code '` concatenated with `code`.
+After the event listener we just wrote, let's register another event to the `resizeWorker`. Call the `on()` method again, and this time pass in the event name `'exit'` as the first argument. The anonymous callback function should have a `code` parameter. Next, check to see if `code` is not strictly equal to `0`. If it is, call `reject()`, passing in `new Error()`. The `Error()` constructor should take the string `'Exited with status code '` concatenated with `code`.
 
 
 ## Register the on message event listener for the monochrome worker
@@ -119,7 +120,7 @@ TASK 16:
 Let's register another event to the `monochromeWorker`. Call the `on()` method 
 again, and this time pass in the event name `'exit'` as the first argument. The 
 anonymous callback function should have a `code` parameter. Next, check to 
-see if `code` is strictly equal to `0`. If it is, call `reject()`, passing in 
+see if `code` is not strictly equal to `0`. If it is, call `reject()`, passing in 
 `new Error()`. The `Error()` constructor should take the string `'Exited with status code '` 
 concatenated with `code`. 
 
@@ -127,8 +128,7 @@ concatenated with `code`.
 TASK 17:
 Let's head back to the `router.js` file. Require the `./imageProcessor`. Then, mark 
 our callback function as `async` in our `post()` method on the `'/upload'` route. 
-After our file validation check, in the body of our `async` callback, `await`
-a call to the `imageProcessor()` passing in `req.file.filename` as it's only 
+After our file validation check, in the body of our `async` callback, open up a `try`/`catch` block. Inside the `try` block, `await` a call to the `imageProcessor()` passing in `request.file.filename` as it's only 
 argument.
 
 ## Add the monochrome image to the photo viewer
