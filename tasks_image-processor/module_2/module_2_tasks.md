@@ -35,7 +35,7 @@ passing in an object literal. This object literal will have two properties.  It'
 ## Configure bodyParser
 TASK 6:
 Back in the `app.js` file, let's also require `body-parser`, and assign it to a const `bodyParser`. Before our previous 
-`app.use()`, Let's call the `use()` method again on our `app` object. Pass in a call to `bodyParser.urlencoded()`, 
+`app.use()`, let's call the `use()` method again on our `app` object. Pass in a call to `bodyParser.urlencoded()`, 
 whose first argument is an object with a key of `extended` and the boolean value `true`.
 
 ## Wire up the router 
@@ -52,7 +52,7 @@ call to the `upload` object's method `single()`, passing in the string
 `response` as parameters. Inside the function body, check if the `request` object has a 
 `fileValidationError` property. If it does return a call to `response.status()`, passing 
 in `400` as the lone argument. Chain a call to `json()`, passing in an object 
-literal with a key of `error` and a `value` of `request.fileValidationError`.
+literal with a key of `error` and a value of `request.fileValidationError`.
 
 ## Respond with a 201
 TASK 9:
