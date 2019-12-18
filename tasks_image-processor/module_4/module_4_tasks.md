@@ -93,7 +93,7 @@ This time, let's register the `'error'` event. Pass an anonymous function that h
 
 ## Register the on exit event listener for the resize worker
 TASK 13:
-After the event listener we just wrote, let's register another event to the `resizeWorker`. Call the `on()` method again, and this time pass in the event name `'exit'` as the first argument. The anonymous callback function should have a `code` parameter. Next, check to see if `code` is not strictly equal to `0`. If it is, call `reject()`, passing in `new Error()`. The `Error()` constructor should take the string `'Exited with status code '` concatenated with `code`.
+After the event listener we just wrote, let's register another event to the `resizeWorker`. Call the `on()` method again, and this time pass in the event name `'exit'` as the first argument. The anonymous callback function should have a `code` parameter. Next, check to see if `code` is not strictly equal to `0`. If it doesn't equal `0`, call `reject()`, passing in `new Error()`. The `Error()` constructor should take the string `'Exited with status code '` concatenated with `code`.
 
 
 ## Register the on message event listener for the monochrome worker
@@ -120,7 +120,7 @@ TASK 16:
 Let's register another event to the `monochromeWorker`. Call the `on()` method 
 again, and this time pass in the event name `'exit'` as the first argument. The 
 anonymous callback function should have a `code` parameter. Next, check to 
-see if `code` is not strictly equal to `0`. If it is, call `reject()`, passing in 
+see if `code` is not strictly equal to `0`. If it doesn't equal `0`, call `reject()`, passing in 
 `new Error()`. The `Error()` constructor should take the string `'Exited with status code '` 
 concatenated with `code`. 
 
