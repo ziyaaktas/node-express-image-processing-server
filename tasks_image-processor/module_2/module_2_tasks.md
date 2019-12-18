@@ -62,4 +62,4 @@ object literal with a key of `success` and the boolean value `true`.
 
 
 OUTRO:
-At this point if we open the terminal up and run the command npm run start and open our browser to localhost 3000, we should be able to upload a png and see that it gets saved to the api/uploads directory. 
+At this point if we open the terminal up and run the command npm run start and open our browser to localhost  port 3000, we should be able to upload a png and see that it gets saved to the api/uploads directory. 
