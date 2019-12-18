@@ -13,7 +13,7 @@ as the second argument.
 
 ## Configure Multer diskStorage
 Task 3:
-Next let's require `multer`. Declare a constant called `storage`. Assign to it a 
+Next after the `express` require, let's require `multer`. Declare a constant called `storage`. Assign to it a 
 call to the `diskStorage()` method of `multer`. Pass an object literal as the 
 only argument. The object literal should have two properties:  the first with a key of `destination` and a value
 of `'api/uploads/'`; the second with a key of `filename` and a value of `'filename'`.
