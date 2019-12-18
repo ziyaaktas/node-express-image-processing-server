@@ -7,7 +7,7 @@ In that file, use destructuring to assign to a constant `Router` the _Router_ me
 
 ## Write the filename handler function
 TASK 2:
-Let's write a function called `filename`. It should take `req`, `file`, and `callback` as its parameters. 
+Let's write a function called `filename`. It should take `request`, `file`, and `callback` as its parameters. 
 Inside the function body make a call to `callback()` passing in `null` as the first argument and `file.originalname`
 as the second argument.
 
@@ -21,10 +21,10 @@ Note: the 2nd property is referring to the `filename` function we made earlier.
 
 ## Create the MIME type file filter
 TASK 4:
-Declare a function called `fileFilter`. It should take `req`, `file`, and 
+Declare a function called `fileFilter`. It should take `request`, `file`, and 
 `callback` as parameters. Inside the function body declare an `if` statement that 
 runs its code block if `file.mimetype` does not strictly equal `'image/png'`. 
-Inside the `if` block, let's assign to `req.fileValidationError` the string `'Wrong 
+Inside the `if` block, let's assign to `request.fileValidationError` the string `'Wrong 
 file type'`. Then, make a call to the `callback()` parameter, passing in `null`, `false`, and a new `Error` object with the message `'Wrong file type'`. Next, in an `else` block, let's call `callback()`, passing in `null` as the first argument, and `true` as the second.
 
 ## Define the upload callback
@@ -56,8 +56,8 @@ literal with a key of `error` and a `value` of `request.fileValidationError`.
 
 ## Respond with a 201
 TASK 9:
-If there is no `fileValidationError` on `req`, let's return a call to 
-`res.status()`, passing in `201`. Let's chain a call to `json()`, passing in an 
+If there is no `fileValidationError` on `request`, let's return a call to 
+`response.status()`, passing in `201`. Let's chain a call to `json()`, passing in an 
 object literal with a key of `success` and the boolean value `true`.
 
 

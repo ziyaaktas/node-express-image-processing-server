@@ -10,8 +10,8 @@ Assign to it a call to the `resolve()` method of `path`. Pass `__dirname` and
 TASK 2:
 Let's call the `get()` method of our `router` object. Pass the route
  `'/photo-viewer'` as the first argument. Pass an anonymous callback function
- that takes `request` and `resolve` as parameters. In the body of the function let's call 
- the `sendFile()` method of `resolve`, passing in the `photoPath` constant as its
+ that takes `request` and `response` as parameters. In the body of the function let's call 
+ the `sendFile()` method of `response`, passing in the `photoPath` constant as its
 only argument.
 
 ## Add an image 
