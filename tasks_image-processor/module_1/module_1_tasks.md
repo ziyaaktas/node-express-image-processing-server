@@ -30,7 +30,7 @@ object.
 
 ## Respond with the form
 Task 6:
-Right above our `module.exports` line, let's define a constant `pathToIndex` to represent the path to our `index.html` file. Call `path.resolve()`, and assign to it the constant we just created. Let's pass `__dirname` as the first argument, and a string value of `'../client/index.html'` as the second argument. 
+Right above our `module.exports` line, let's define a constant `pathToIndex` to represent the path to our `index.html` file. Call `path.resolve()`, and assign it to the constant we just created. Let's pass `__dirname` as the first argument, and a string value of `'../client/index.html'` as the second argument. 
 
 
 Let's call the `use()` method of our `app`. 
