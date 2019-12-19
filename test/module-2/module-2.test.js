@@ -124,13 +124,9 @@ describe('module 2', () => {
       expect('fileFilter', 'Did you pass an object literal with a key of `fileFilter` to `multer()`?').to.equal(upload.fileFilter.name);
     });
 
-    it('should pass bodyParser to app.use @configure-bodyParser', () => {
-      expect('urlencodedParser', 'Did you pass `bodyParser.urlencoded({ extended: true })` to `app.use()`?').to.equal(useSpy.firstCall.args[0].name);
-    });
-
     it('should pass the router to app.use @wire-up-the-router', () => {
-      expect('/', 'Did you pass the route `\'/\'` as the first argument to `app.use()`?').to.equal(useSpy.secondCall.args[0]);
-      expect('router', 'did you pass the `router` as the second argument to `app.use()`?').to.equal(useSpy.secondCall.args[1].name);
+      expect('/', 'Did you pass the route `\'/\'` as the first argument to `app.use()`?').to.equal(useSpy.firstCall.args[0]);
+      expect('router', 'did you pass the `router` as the second argument to `app.use()`?').to.equal(useSpy.firstCall.args[1].name);
     });
 
     it('should make a post request that fails validation and receives a 400 @create-the-upload-route', async () => {

@@ -32,15 +32,10 @@ TASK 5:
 Declare a constant named `upload`. Assign to `upload` a call to `multer()`, 
 passing in an object literal. This object literal will have two properties.  It's first property will be the key `fileFilter` which refers to our `fileFilter()` function. Its second property has a key called `storage`, and whose value is our `storage` constant.
 
-## Configure bodyParser
-TASK 6:
-Back in the `app.js` file, let's also require `body-parser`, and assign it to a const `bodyParser`. Before our previous 
-`app.use()`, let's call the `use()` method again on our `app` object. Pass in a call to `bodyParser.urlencoded()`, 
-whose first argument is an object with a key of `extended` and the boolean value `true`.
-
 ## Wire up the router 
 Task 7:
-Let's go ahead and require our `router` from `./src/router.js`. After the `use()` call that was passed `bodyParser.urlencoded()`, call `app.use()` again.
+Let's go ahead and require our `router` from `./src/router`.
+Before our previous `app.use()`, let's call the `use()` method again on our `app` object. 
 Pass it the route `'/'` as the first argument and our router object as the second.
 
 ## Create the upload route
