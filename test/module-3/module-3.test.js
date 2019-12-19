@@ -50,7 +50,7 @@ describe('module 3', () => {
       throw new Error('Did you pass `\'/photo-viewer\'` to `router.get()`?');
     }
 
-    expect(response.text.includes('Photo Viewer'), 'Did you call `res.sendFile() in the callback that\'s passed to `router.get()`?').to.be.true;
+    expect(response.text.includes('Photo Viewer'), 'Did you call `response.sendFile()` in the callback that\'s passed to `router.get()`? \n Did you pass the correct path to `router.get()`').to.be.true;
   });
 
   it('photo-viewer.html should add an img tag with an src of ullr.png to photo-viewer.html @add-an-image', () => {
