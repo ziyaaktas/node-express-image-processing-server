@@ -73,7 +73,7 @@ describe('module 1', () => {
       it('has a name attribute with a value of photo @add-an-input', () => {
         expect(
             'photo',
-            'the `input` does not have a `name` with a `value` of `photo`'
+            'the `input` does not have a `name` with a value of `photo`'
         ).to.equal(R.pathOr(undefined, ['attributes', 'name', 'value'], fileInput));
       });
     });
