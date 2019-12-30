@@ -38,6 +38,11 @@ Let's go ahead and require our `router` from `./src/router`.
 Before our previous `app.use()`, let's call the `use()` method again on our `app` object. 
 Pass it the route `'/'` as the first argument and our router object as the second.
 
+
+## Serve static files
+Let's call `app.use()` again, passing the call `express.static()` as it's only argument.
+Pass to `express.static()` a call to `path.resolve()`. You should call `path.resolve()` with the arguments `__dirname` and `'uploads'`, in that order.
+
 ## Create the upload route
 TASK 8:
 Back in `router.js`, call the `post()` method of our `router` object. Let's pass 

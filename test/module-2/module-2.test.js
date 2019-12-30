@@ -14,6 +14,8 @@ describe('module 2', () => {
     beforeEach(() => {
       useSpy = sinon.spy();
       postSpy = sinon.spy();
+      pathResolveStub = sinon.stub().returns('/root');
+
       proxyquire('../../api/app', {
         express: sinon.stub().returns({
           get: sinon.spy(),
@@ -22,6 +24,9 @@ describe('module 2', () => {
           use: useSpy,
           listen: sinon.spy(),
         }),
+        path: {
+          resolve: pathResolveStub,
+        },
       });
     });
 
@@ -125,8 +130,33 @@ describe('module 2', () => {
     });
 
     it('should pass the router to app.use @wire-up-the-router', () => {
-      expect('/', 'Did you pass the route `\'/\'` as the first argument to `app.use()`?').to.equal(useSpy.firstCall.args[0]);
-      expect('router', 'did you pass the `router` as the second argument to `app.use()`?').to.equal(useSpy.firstCall.args[1].name);
+      expect(
+          '/',
+          'Did you pass the route `\'/\'` as the first argument to `app.use()`?'
+      ).to.equal(R.pathOr(undefined, ['firstCall', 'args', 0], useSpy));
+
+      expect(
+          'router',
+          'did you pass the `router` as the second argument to `app.use()`?'
+      ).to.equal(R.pathOr(undefined, ['firstCall', 'args', 1, 'name'], useSpy));
+    });
+
+
+    it('should serve static files @serve-static-files', () => {
+      expect(
+          path.resolve(__dirname, '../../api'),
+          'Did you pass `__dirname` as the first argument to `path.resolve()`?'
+      ).to.equal(R.pathOr(undefined, ['secondCall', 'args', 0], pathResolveStub));
+
+      expect(
+          'uploads',
+          'Did you pass `\'../client/index.html\'` as the second argument to `path.resolve()`?'
+      ).to.equal(R.pathOr(undefined, ['secondCall', 'args', 1], pathResolveStub));
+
+      expect(
+          'serveStatic',
+          'Did you pass a call to `express.static()` to `app.use()`'
+      ).to.equal(R.pathOr(undefined, ['secondCall', 'args', 0, 'name'], useSpy));
     });
 
     it('should make a post request that fails validation and receives a 400 @create-the-upload-route', async () => {
