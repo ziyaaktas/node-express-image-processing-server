@@ -276,8 +276,10 @@ describe('module 4', () => {
     it('should reject the promise on resizeWorker\'s \'exit\' event when process exit\'s  > 0 @resize-exit-event', async () => {
       const imageProcessor = rewire('../../api/src/imageProcessor');
       let errorThrown = false;
+      let finishedProcessing = false;
+
       setTimeout(() => {
-        if (!errorThrown) {
+        if (!errorThrown && !finishedProcessing) {
           throw new Error('Did you register an `on(\'exit\')` event listener for the resizeWorker that rejects the promise?');
         }
       }, 2000);
@@ -287,6 +289,7 @@ describe('module 4', () => {
 
       try {
         await imageProcessor('ullr.png');
+        finishedProcessing = true;
       } catch (err) {
         errorThrown = true;
         expect(
@@ -295,9 +298,9 @@ describe('module 4', () => {
         ).to.eql(err.message);
       } finally {
         if (!errorThrown) {
+          errorThrown = true;
           throw new Error('Did you register an `on(\'exit\')` event listener for the resizeWorker that rejects the promise?');
         }
-        errorThrown = true;
       }
     });
 
@@ -343,8 +346,10 @@ describe('module 4', () => {
     it('should reject the promise on monochromeWorker\'s \'exit\' event when process exit\'s > 0 @monochrome-exit-event', async () => {
       const imageProcessor = rewire('../../api/src/imageProcessor');
       let errorThrown = false;
+      let finishedProcessing = false;
+
       setTimeout(() => {
-        if (!errorThrown) {
+        if (!errorThrown && !finishedProcessing) {
           throw new Error('Did you register an `on(\'exit\')` event listener for the monochromeWorker that rejects the promise?');
         }
       }, 2000);
@@ -353,6 +358,7 @@ describe('module 4', () => {
 
       try {
         await imageProcessor('ullr.png');
+        finishedProcessing = true;
       } catch (err) {
         errorThrown = true;
         expect(
@@ -361,9 +367,9 @@ describe('module 4', () => {
         ).to.eql(err.message);
       } finally {
         if (!errorThrown) {
+          errorThrown = true;
           throw new Error('Did you register an `on(\'exit\')` event listener for the monochromeWorker that rejects the promise?');
         }
-        errorThrown = true;
       }
     });
   });
