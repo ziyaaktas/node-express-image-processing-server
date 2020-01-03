@@ -277,7 +277,9 @@ describe('module 4', () => {
       const imageProcessor = rewire('../../api/src/imageProcessor');
       let errorThrown = false;
       setTimeout(() => {
-        throw new Error('Did you register an `on(\'exit\')` event listener for the resizeWorker that rejects the promise?');
+        if (!errorThrown) {
+          throw new Error('Did you register an `on(\'exit\')` event listener for the resizeWorker that rejects the promise?');
+        }
       }, 2000);
 
       imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/resizeWorkerProxyExitCode1.js'));
@@ -295,6 +297,7 @@ describe('module 4', () => {
         if (!errorThrown) {
           throw new Error('Did you register an `on(\'exit\')` event listener for the resizeWorker that rejects the promise?');
         }
+        errorThrown = true;
       }
     });
 
@@ -332,7 +335,7 @@ describe('module 4', () => {
         // do nothing
       } finally {
         if (!errorThrown) {
-          throw new Error('Did you register an `on(\'error\')` event listener for the resizeWorker that rejects the promise?');
+          throw new Error('Did you register an `on(\'error\')` event listener for the monochromeWorker that rejects the promise?');
         }
       }
     });
@@ -341,7 +344,9 @@ describe('module 4', () => {
       const imageProcessor = rewire('../../api/src/imageProcessor');
       let errorThrown = false;
       setTimeout(() => {
-        throw new Error('Did you register an `on(\'exit\')` event listener for the monochromeWorker that rejects the promise?');
+        if (!errorThrown) {
+          throw new Error('Did you register an `on(\'exit\')` event listener for the monochromeWorker that rejects the promise?');
+        }
       }, 2000);
       imageProcessor.__set__('pathToMonochromeWorker', path.resolve('./test/module-4/resizeWorkerProxyExitCode1.js'));
       imageProcessor.__set__('pathToResizeWorker', path.resolve('./test/module-4/monochromeStub.js'));
@@ -356,8 +361,9 @@ describe('module 4', () => {
         ).to.eql(err.message);
       } finally {
         if (!errorThrown) {
-          throw new Error('Did you register an `on(\'exit\')` event listener for the resizeWorker that rejects the promise?');
+          throw new Error('Did you register an `on(\'exit\')` event listener for the monochromeWorker that rejects the promise?');
         }
+        errorThrown = true;
       }
     });
   });
