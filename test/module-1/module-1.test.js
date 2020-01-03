@@ -104,11 +104,13 @@ describe('module 1', () => {
 
   context('app.js unit tests', () => {
     let useSpy;
+    let staticStub;
     let pathResolveStub;
 
     beforeEach(() => {
       useSpy = sinon.spy();
-      pathResolveStub = sinon.stub();
+      pathResolveStub = sinon.stub().returns('/root');
+      staticStub = sinon.stub();
 
       proxyquire('../../api/app', {
         express: sinon.stub().returns({
@@ -135,6 +137,7 @@ describe('module 1', () => {
           'Did you pass `\'../client/index.html\'` as the second argument to `path.resolve()`?'
       ).to.equal(R.pathOr(undefined, ['firstCall', 'args', 1], pathResolveStub));
     });
+
 
     it('app.use should be called with /* as it\'s route @respond-with-the-form', () => {
       expect(useSpy.calledWith('/*'), 'Did you pass `/*` as the first argument to `app.use()`?').to.be.true;
